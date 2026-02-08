@@ -1,6 +1,6 @@
-package id.ac.iui.cs.advprog.eshop.repository;
+package id.ac.ui.cs.advprog.eshop.repository;
 
-import id.ac.iui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
