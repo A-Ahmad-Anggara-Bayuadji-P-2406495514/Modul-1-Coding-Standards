@@ -28,4 +28,16 @@ public class ProductTest {
     void testGetProductQuantity() {
         assertEquals(100, this.product.getProductQuantity());
     }
+
+    @Test
+    void testEditProductName() {
+        this.product.setProductName("Sampo Cap Bambang New");
+        assertEquals("Sampo Cap Bambang New", this.product.getProductName());
+    }
+
+    @Test
+    void testEditProductQuantity() {
+        this.product.setProductQuantity(25);
+        assertEquals(25, this.product.getProductQuantity());
+    }
 }
