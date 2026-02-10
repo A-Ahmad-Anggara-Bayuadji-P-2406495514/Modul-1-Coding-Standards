@@ -11,10 +11,9 @@ import java.util.List;
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
-    private int idCounter = 1;
     public Product create(Product product) {
         if (product.getProductId() == null) {
-            product.setProductId(String.valueOf(idCounter++));
+            product.setProductId(java.util.UUID.randomUUID().toString());
         }
 
         productData.add(product);
