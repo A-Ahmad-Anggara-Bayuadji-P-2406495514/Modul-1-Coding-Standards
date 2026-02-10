@@ -65,4 +65,61 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEditProductPositive() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product updatedProduct = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang NEW");
+        product.setProductQuantity(5);
+        productRepository.update(updatedProduct);
+
+        Product result = productRepository.findById(product.getProductId());
+        assertEquals("Sampo Cap Bambang NEW", result.getProductId());
+        assertEquals(5, result.getProductName());
+    }
+
+    @Test
+    void testEditProductNegative() {
+        Product product = new Product();
+        product.setProductId("None");
+        product.setProductName("None");
+        product.setProductQuantity(0);
+
+        Product result = productRepository.update(product);
+        assertNull(result);
+    }
+
+    @Test
+    void testDeleteProductPositive() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        productRepository.delete("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testDeleteProductNegative() {
+        Product product = new Product();
+        product.setProductId("test-exist");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        productRepository.delete("test-non-exist");
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+
+    }
 }
