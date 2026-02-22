@@ -81,8 +81,8 @@ class ProductRepositoryTest {
         productRepository.update(updatedProduct);
 
         Product result = productRepository.findById(product.getProductId());
-        assertEquals("Sampo Cap Bambang NEW", result.getProductId());
-        assertEquals(5, result.getProductName());
+        assertEquals("Sampo Cap Bambang NEW", result.getProductName());
+        assertEquals(5, result.getProductQuantity());
     }
 
     @Test
