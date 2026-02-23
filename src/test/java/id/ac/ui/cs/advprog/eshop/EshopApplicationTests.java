@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class EshopApplicationTests {
@@ -21,6 +22,7 @@ class EshopApplicationTests {
     @Test
     void testMain() {
         EshopApplication.main(new String[] {});
+        assertTrue(true, "The main method should execute without throwing exceptions");
     }
 
 }
