@@ -88,5 +88,6 @@ sonar {
         property("sonar.projectKey", "A-Ahmad-Anggara-Bayuadji-P-2406495514_Modul-1-Coding-Standards")
         property("sonar.organization", "a-ahmad-anggara-bayuadji-p-2406495514")
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
