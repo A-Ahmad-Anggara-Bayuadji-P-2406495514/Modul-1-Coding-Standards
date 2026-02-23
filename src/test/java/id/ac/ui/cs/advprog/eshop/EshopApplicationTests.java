@@ -25,4 +25,5 @@ class EshopApplicationTests {
         assertTrue(true, "The main method should execute without throwing exceptions");
     }
 
+
 }
