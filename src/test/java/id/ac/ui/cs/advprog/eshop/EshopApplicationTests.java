@@ -8,6 +8,8 @@ class EshopApplicationTests {
 
     @Test
     void contextLoads() {
+        // This test ensures that the Spring application context loads successfully.
+        // If there are issues with bean creation or configuration, this test will fail.
     }
 
     @Test
