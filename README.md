@@ -1,4 +1,6 @@
-# Refleksi Exercise 1
+
+# Modul 1
+### Refleksi Exercise 1
 
 1. **Implementasi Edit dan Delete**
 
@@ -10,7 +12,7 @@
    ke struktur data yang mendukung concurrency seperti @CopyOnWriteArrayList, serta menerapkan validasi input Spring
    untuk memastikan integritas data aplikasi.
 
-# Refleksi Exercise 2
+### Refleksi Exercise 2
 
 1. **Unit Test**
 
@@ -30,4 +32,35 @@ Hal tersebut bisa mengarah ke code duplication pada bagian setup danjuga konfigu
 terdapat redundancy dalam mendefinisikan variabel serverPort dan juga baseUrl, serta Pengulangan logika
 penggabungan URL di setiap @BeforeEach Oleh karena itu, untuk memperbaikinya adalah kita bisa menerapkan konsep
 Inheritance dengan memnbuat sebuah class baru yang berisikan konfigurasi Spring Boot Test dan Selenium. Dengan 
-solusi tersebut, kita tinggal menggunakan konsep iheritance dan dapat meningkatkan maintainability. 
+solusi tersebut, kita tinggal menggunakan konsep iheritance dan dapat meningkatkan maintainability.
+
+
+# Modul 2
+
+### Code Quality Issues
+
+**1. Penggunaan Modifier yang Tidak Perlu**
+   
+   Beberapa kali ditemukan penggunaan modifier 'public' yang unnecessary untuk digunakan, tidak sesuai dengan standar encapsulation. Fix yang saya lakukan adalah dengan menhapus modifier 'public' tersebut pada class dan juga unit test yang tidak perlu.
+
+**2. Pengelompokkan dependensi di `build.gradle.kts'**
+
+   SonarCloud saya mendeteksi bagian dependencies saya di 'build.gradle.kts' tidak tersusun dengan rapi. Oleh karena itu saya perbaiki dengan mengelompokkan library berdasarkan tujuannya (seperti menempatkan semua testImplementation dalam satu blok yang sama) untuk meningkatkan readability dan maintanability.
+
+**3. Permasalahan Penulisan**
+
+   Terjadi error saat deployment karena terdapat permaslahan case-sensitivity antara Windows dan Linux. Hal yang saya lakukan  adalah memastikan nama file di folder templates (misal: productList.html) cocok secara persis dengan string yang dikembalikan oleh Controller atau sebalikanya agar aplikasi dapat berjalan di production (Linux/Koyeb).
+
+
+### Implementasi CI/CD
+
+Menurut saya, implementasi saat ini sudah memenuhi definisi Continuous Integration (CI) dan Continuous Deployment (CD.
+
+Pertama, aspek Continuous Integration terpenuhi karena setiap kali ada perubahan kode yang dicommit ke repositori, GitHub Actions otomatis menjalankan unit test dan static analysis menggunakan SonarCloud untuk memastikan kode baru tidak merusak fitur yang sudah ada.
+
+Kedua, aspek Continuous Deployment telah tercapai melalui integrasi dengan Koyeb menggunakan pendekatan pull-based, sehingga setiap kode yang sudah pass test dan dimerge ke branch main akan langsung di-build dan dideploy ke server produksisecara otomatis.
+
+Ketiga, alur ini menciptakan siklus pengembangan yang cepat dan aman, di mana kesalahan konfigurasi (seperti masalah verifikasi dependensi) dapat segera dideteksi dan diperbaiki, sesuai dengan tujuan utama dari CI/CD.
+
+
+
