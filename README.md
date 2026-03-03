@@ -63,4 +63,31 @@ Kedua, aspek Continuous Deployment telah tercapai melalui integrasi dengan Koyeb
 Ketiga, alur ini menciptakan siklus pengembangan yang cepat dan aman, di mana kesalahan konfigurasi (seperti masalah verifikasi dependensi) dapat segera dideteksi dan diperbaiki, sesuai dengan tujuan utama dari CI/CD.
 
 
+# Modul 3 (Maintanability & OO)
+### Refleksi Exercise
 
+1Tentu, Bayu. Berikut adalah draf jawaban untuk bagian Reflection di README.md kamu. Saya menyusunnya dalam format dua paragraf singkat per poin agar tetap padat dan informatif, sesuai dengan progres proyek ESHOP yang baru saja kita kerjakan.
+
+**1. Principles Applied to the Project**
+
+   Dalam proyek ini, saya menerapkan SOLID untuk meningkatkan kualitas kode. Berikut penerapan saya:
+   
+   Single Responsibility Principle (SRP) diterapkan dengan memisahkan CarController dari ProductController agar masing-masing hanya menangani satu domain. 
+   
+   Interface Segregation Principle (ISP) diterapkan dengan memecah CarService dan CarRepository menjadi interface Read dan Write, sehingga klien tidak terpaksa bergantung pada metode yang tidak mereka gunakan.
+   
+   Dependency Inversion Principle (DIP) dan Open-Closed Principle (OCP) saya terapkan dengan mengubah ketergantungan high-level module (Service) ke low-level module (Repository) menjadi ketergantungan pada abstraksi (interface) menggunakan Constructor Injection. Hal ini secara otomatis mendukung OCP, di mana sistem sekarang terbuka untuk ekstensi (seperti menambah SqlCarRepository) namun tertutup untuk modifikasi pada kode Service yang sudah ada.  
+   
+   Liskov Substitution Principle (LSP) dipenuhi dengan menghapus inheritance yang kurang tepat antara controller, memastikan setiap kelas dapat berdiri sendiri tanpa merusak logika parentnya.
+
+**2. Advantages of Applying SOLID Principles**
+
+   Penerapan SOLID membuat kode menjadi lebih maintanable dan fleksibel terhadap perubahan. Sebagai contoh, dengan adanya DIP, jika saya ingin mengganti penyimpanan data dari ArrayList ke database SQL, saya hanya perlu untuk membuat implementation baru dari CarRepository tanpa perlu mengubah logika bisnis di CarServiceImpl. Ini juga mengurangi risiko munculnya bug baru saat melakukan pembaruan sistem.
+   
+   Selain itu, pengujian kode (unit testing) menjadi lebih efisien dan terisolasi. Dengan ISP, saya bisa membuat mock yang sangat spesifik, misalnya saat menguji fitur pencarian, saya hanya perlu melakukan mocking pada CarReadRepository tanpa mempedulikan metode hapus atau edit. Struktur ini memastikan bahwa setiap komponen dapat diuji secara mandiri, yang pada akhirnya meningkatkan keandalan aplikasi secara keseluruhan.
+
+ **3. Disadvantages of Not Applying SOLID Principles**
+
+ Jika kita tidak menerapkan SOLID principle, kode cenderung menjadi "kaku" dan sulit untuk dikembangkan. Sebagai contoh, sebelum refactoring, CarController yang melakukan extends pada ProductController menciptakan ketergantungan yang tidak perlu (LSP Violation). Jika ada perubahan pada cara ProductController menangani pemetaan URL, hal tersebut bisa secara tidak sengaja merusak fungsi di CarController.
+
+Selain itu, tanpa SRP dan OCP, kelas-kelas akan menjadi terlalu besar dan kompleks (God Objects). Jika CarServiceImpl bergantung langsung pada concrete class CarRepository, maka setiap kali kita ingin mengubah cara data disimpan, kita harus membongkar dan memodifikasi isi Service tersebut. Hal ini tidak hanya membuang waktu, tetapi juga membuat kode sulit dibaca oleh developer lainnya dan meningkatkan kemungkinan terjadinya bug yang awalnya fitur berjawal normal.
