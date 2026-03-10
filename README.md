@@ -91,3 +91,20 @@ Ketiga, alur ini menciptakan siklus pengembangan yang cepat dan aman, di mana ke
  Jika kita tidak menerapkan SOLID principle, kode cenderung menjadi "kaku" dan sulit untuk dikembangkan. Sebagai contoh, sebelum refactoring, CarController yang melakukan extends pada ProductController menciptakan ketergantungan yang tidak perlu (LSP Violation). Jika ada perubahan pada cara ProductController menangani pemetaan URL, hal tersebut bisa secara tidak sengaja merusak fungsi di CarController.
 
 Selain itu, tanpa SRP dan OCP, kelas-kelas akan menjadi terlalu besar dan kompleks (God Objects). Jika CarServiceImpl bergantung langsung pada concrete class CarRepository, maka setiap kali kita ingin mengubah cara data disimpan, kita harus membongkar dan memodifikasi isi Service tersebut. Hal ini tidak hanya membuang waktu, tetapi juga membuat kode sulit dibaca oleh developer lainnya dan meningkatkan kemungkinan terjadinya bug yang awalnya fitur berjawal normal.
+
+
+# Modul 4 (TDD & Refactoring)
+
+**1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best
+Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this
+TDD flow is useful enough for you or not. If not, explain things that you need to do next time
+you make more tests.**
+
+Alur TDD yang diterapkan dalam tutorial ini menurut saya sangat berguna karena memaksa saya untuk memikirkan persyaratan fitur secara mendalam sebelum menulis kode implementasi. Dengan menulis tes terlebih dahulu, saya dapat mendefinisikan ekspektasi perilaku sistem dengan lebih jelas, terutama pada logika validasi Voucher Code dan Bank Transfer yang cukup spesifik. Hal ini mengurangi kemungkinan terjadinya bug yang tidak terdeteksi sejak dini dan membuat struktur kode menjadi lebih modular serta terarah. Kedepannya, saya perlu lebih fokus pada aspek refactoring agar kode tidak hanya sekadar lolos tes, tetapi juga memiliki tingkat keterbacaan yang lebih tinggi. Secara keseluruhan, TDD ini memberikan rasa aman saat melakukan perubahan kode karena setiap fungsionalitas memiliki jaring pengaman berupa unit tes yang komprehensif.
+
+**2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully
+followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you
+create more tests**
+
+Unit tes yang saya buat dalam tutorial ini telah mengikuti prinsip F.I.R.S.T., terutama pada aspek Fast dan Isolated melalui penggunaan mocking dengan Mockito untuk memisahkan ketergantungan antar layer. Tes bersifat Repeatable karena tidak bergantung pada data eksternal atau urutan eksekusi tertentu, sehingga memberikan hasil yang konsisten di environment mana pun. Setiap tes juga sudah bersifat self-validating karena menggunakan assertion otomatis yang langsung menentukan status kelulusan tanpa perlu pengecekan manual. Kedepannya, saya akan terus mempertahankan disiplin ini sambil memperluas skenario unhappy path untuk memastikan ketahanan sistem terhadap berbagai input yang tidak valid secara lebih menyeluruh.
+
